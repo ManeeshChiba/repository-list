@@ -1,10 +1,14 @@
 import React from 'react';
 import styles from './App.module.scss';
 
+import Search from './searchBar';
+
 const App = () => {
   return (
     <main className={styles.layout}>
-      test
+      <Search />
+      {/* Status Updater */}
+      {/* Results List */}
     </main>
   );
 };

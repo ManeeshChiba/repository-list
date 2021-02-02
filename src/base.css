@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: 'Fira Sans', sans-serif;
 }
 
@@ -12,4 +11,10 @@
   --medium-purple: #717fb0;
   --dark-purple: #734F9D;
   --light-pink: #EF9FCB;
+  --black: #121212;
+  --white: #FFFFFF;
+
+  --radius: .5rem;
+
+
 }
