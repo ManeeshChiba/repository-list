@@ -1,0 +1,8 @@
+.layout {
+  width: 100%;
+  min-height: 100vh;
+  background: radial-gradient(100vw 120vh at 110% -10%, var(--medium-purple), var(--dark-blue));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
