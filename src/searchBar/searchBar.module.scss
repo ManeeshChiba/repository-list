@@ -1,11 +1,20 @@
 .searchWrapper {
   max-width: 700px;
+  min-width: 500px;
   margin: 0 auto;
   padding: 2rem;
   width: 50vw;
   display: grid;
   grid-template-columns: auto 125px;
-  gap: 1em
+  gap: 1em;
+
+  @media (max-width: 610px) {
+    min-width: 320px;
+    grid-template-columns: auto;
+    padding: 2rem 0;
+    margin: 0;
+    width: 100%;
+  }
 }
 .input {
   display: block;

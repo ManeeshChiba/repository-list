@@ -18,11 +18,4 @@ const Card = ({name, description, stargazers, watchers}) => {
   );
 };
 
-Card.defaultProps = {
-  name: 'A  really very long name with stuff and things and what can I say its a long name',
-  description: 'Some descriotion about the repo thats is here Some descriotion about the repo thats is here Some descriotion about the repo thats is here Some descriotion about the repo thats is here Some descriotion about the repo thats is here Some descriotion about the repo thats is here Some descriotion about the repo thats is here Some descriotion about the repo thats is here Some descriotion about the repo thats is here ',
-  stargazers: 12,
-  watchers: 37,
-}
-
 export default Card;

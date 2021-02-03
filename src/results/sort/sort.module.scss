@@ -1,0 +1,21 @@
+.sort {
+  max-width: 320px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  color: var(--white);
+
+  div {
+    padding-left: .25em;
+  }
+  
+  input {
+    margin: 0 .25em;
+  }
+
+  @media (max-width: 610px) {
+    justify-content: flex-start;
+    max-width: 610px;
+    padding: 1em 0;
+  }
+}

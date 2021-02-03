@@ -3,3 +3,13 @@
   min-height: 100vh;
   background: radial-gradient(100vw 120vh at 110% -10%, var(--medium-purple), var(--dark-blue));
 }
+
+.container {
+  max-width: 1440px;
+  padding: 0 2em;
+  margin: 0 auto;
+
+  @media (max-width: 610px) {
+    padding: 0 1em;
+  }
+}
