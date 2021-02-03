@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from './sort.module.scss';
 
-import { AppContext } from '../context/AppContext';
+import { AppContext } from '../../context/AppContext';
 
 const Sort = () => {
   const { setSortOrder, sortBy } = useContext(AppContext)
@@ -22,8 +22,8 @@ const Sort = () => {
           name={'sort'}
           value={'name'}
           id={'name'}
-          checked={checked === 'name'}
-          onChange={() => setChecked('name')}
+          checked={checked === 'full_name'}
+          onChange={() => setChecked('full_name')}
         />
         <label htmlFor={'name'}>Name</label>
       </div>
@@ -33,8 +33,8 @@ const Sort = () => {
           name={'sort'}
           value={'star'}
           id={'star'}
-          checked={checked === 'star'}
-          onChange={() => setChecked('star')}
+          checked={checked === 'stargazers_count'}
+          onChange={() => setChecked('stargazers_count')}
         />
         <label htmlFor={'star'}>Stargazers</label>
       </div>

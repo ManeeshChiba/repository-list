@@ -22,3 +22,21 @@
     grid-template-columns: 1fr;
   }
 }
+
+.resultsHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+
+  h1 {
+    font-size: 2em;
+    color: var(--white);
+  }
+
+  @media (max-width: 610px) {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+}

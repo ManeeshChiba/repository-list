@@ -4,8 +4,9 @@ export const AppContext = createContext();
 
 const initialState = {
   loading: false,
+  error: false,
   searchTerm: '',
-  sortBy: 'name',
+  sortBy: 'full_name',
   data: []
 };
 
@@ -16,7 +17,8 @@ export const AppProvider = ({ children }) => {
     setStore({
       ...store,
       searchTerm: term,
-      loading: true
+      loading: true,
+      error: false,
     });
   }
 
@@ -25,34 +27,40 @@ export const AppProvider = ({ children }) => {
       ...store,
       sortBy: order,
       loading: true,
+      error: false,
     });
   }
 
   useEffect(() => {
     const { loading, searchTerm, sortBy } = store;
-    if (loading) {
+    if (loading && searchTerm) {
       makeApiRequest(searchTerm, sortBy);
     }
-  },[store]);
+  }, [store]);
 
   const makeApiRequest = (org, sort) => {
     fetch(`https://api.github.com/orgs/${org}/repos?per_page=100&type=all&sort=${sort}`)
       .then((response) => {
-        let payload = [];
-        if ([401, 404, 500].includes(response.status)) {
-          payload = [];
+        if (!response.ok) {
+          throw new Error("No 200 response")
+        } else {
+          return response.json();
         }
-        if (response.status === 200) {
-          payload = response.json();
-        }
-        return payload;
       })
-      .then((json) => {
+      .then((data) => {
         setStore({
           ...store,
           loading: false,
-          data: json
-        })
+          data,
+        });
+      })
+      .catch(() => {
+        setStore({
+          ...store,
+          loading: false,
+          data: [],
+          error: true,
+        });
       });
   }
 
