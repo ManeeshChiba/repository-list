@@ -1,10 +1,11 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 export const AppContext = createContext();
 
 const initialState = {
+  loading: false,
   searchTerm: '',
-  state: 'initial',
+  sortBy: 'name',
   data: []
 };
 
@@ -15,31 +16,41 @@ export const AppProvider = ({ children }) => {
     setStore({
       ...store,
       searchTerm: term,
-      state: 'loading',
+      loading: true
     });
-    makeApiRequest(term);
   }
 
-  const makeApiRequest = (org) => {
-    fetch(`https://api.github.com/users/${org}/repos?per_page=100&type=all`)
+  const setSortOrder = (order) => {
+    setStore({
+      ...store,
+      sortBy: order,
+      loading: true,
+    });
+  }
+
+  useEffect(() => {
+    const { loading, searchTerm, sortBy } = store;
+    if (loading) {
+      makeApiRequest(searchTerm, sortBy);
+    }
+  },[store]);
+
+  const makeApiRequest = (org, sort) => {
+    fetch(`https://api.github.com/orgs/${org}/repos?per_page=100&type=all&sort=${sort}`)
       .then((response) => {
+        let payload = [];
         if ([401, 404, 500].includes(response.status)) {
-          setStore({
-            ...store,
-            state: 'error'
-          });
+          payload = [];
         }
         if (response.status === 200) {
-          setStore({
-            ...store,
-            state: 'ready',
-          });
+          payload = response.json();
         }
-        return response.json();
+        return payload;
       })
       .then((json) => {
         setStore({
           ...store,
+          loading: false,
           data: json
         })
       });
@@ -48,7 +59,8 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider value={{
       ...store,
-      setSearchTerm
+      setSearchTerm,
+      setSortOrder
     }}>
       {children}
     </AppContext.Provider>
