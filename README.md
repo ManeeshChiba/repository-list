@@ -4,6 +4,13 @@ I used create react app to get started with this test.
 You can view my commit history here: https://github.com/ManeeshChiba/repository-list
 
 I added `node-sass` since I find the style nesting useful. I also chose to use `css-modules` to avoid class name pollution.
+
+## How to run locally
+- You must have node.js installed
+- Run `npm i`
+- Run `npm start`
+- The webapp will be available ay [localhost:3000](http://localhost:3000)
+
 ### Breaks
 Taking a break for dinner 20h00
 Returned from break 21h00
