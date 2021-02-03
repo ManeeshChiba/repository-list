@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './list.module.scss';
+
+import { AppContext } from '../../context/AppContext';
+
 import Card from '../card';
 import Sort from '../sort';
 
@@ -78,10 +81,22 @@ const testVal = [{
 ]
 
 const ResultsList = () => {
+  const { searchTerm, state } = useContext(AppContext);
   return (
     <section className={styles.results}>
       <div className={styles.resultsHeader}>
-        <h1>Search results for: "Maneesh"</h1>
+        {
+          state === 'loading' && (<h1>Loading results for "{searchTerm}"</h1>)
+        }
+        {
+          state === 'ready' && searchTerm.length > 0 && (<h1>Search results for: "{searchTerm}"</h1>)
+        }
+        {
+          state === 'ready' && searchTerm.length <= 0 && (<h1>Type something above to search</h1>)
+        }
+        {
+          state === 'error' && (<h1>Something went wrong, please try again</h1>)
+        }
         <Sort />
       </div>
       <section className={styles.resultsList}>
