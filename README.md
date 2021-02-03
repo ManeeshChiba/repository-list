@@ -1,5 +1,6 @@
 ## Break
-Taking a break fro dinner 20h00
+Taking a break for dinner 20h00
+Returned from break 21h00
 
 # Getting Started with Create React App
 
